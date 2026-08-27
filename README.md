@@ -240,7 +240,9 @@ Safety Model    : openai/gpt-oss-safeguard-20b
 ## Author
 
 Arjun Goel
+
 MCA - VIT Vellore
 
 Emai: arjun11goel@gmail.com
+
 Linkedin: linkedin.com/in/arjun11goel
