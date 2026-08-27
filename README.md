@@ -243,6 +243,6 @@ Arjun Goel
 
 MCA - VIT Vellore
 
-Emai: arjun11goel@gmail.com
+Email: arjun11goel@gmail.com
 
-Linkedin: linkedin.com/in/arjun11goel
+Linkedin: www.linkedin.com/in/arjun11goel
