@@ -1,0 +1,198 @@
+2026-08-27 12:37:12,554 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-08-27 12:37:12,555 | INFO | hr_assistant.tracing | LangSmith tracing is OFF (set LANGSMITH_TRACING=true in .env to enable)
+2026-08-27 12:37:12,556 | INFO | hr_assistant.pipeline | No vector store on disk, building one from scratch
+2026-08-27 12:37:12,557 | INFO | hr_assistant.document_loader | Loading document from 'data\hr_policy.txt'
+2026-08-27 12:37:12,558 | INFO | hr_assistant.document_loader | Loaded 1 document(s)
+2026-08-27 12:37:12,560 | INFO | hr_assistant.splitter | Split document(s) into 9 chunk(s)
+2026-08-27 12:37:12,561 | INFO | hr_assistant.vector_store | Embedding 9 chunk(s) and building FAISS index...
+2026-08-27 12:37:12,564 | INFO | hr_assistant.embeddings | Initializing embeddings model 'jina-embeddings-v2-base-en'
+2026-08-27 12:37:14,584 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-08-27 12:37:14,586 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-08-27 12:37:14,586 | INFO | faiss.loader | Loading faiss.
+2026-08-27 12:37:14,660 | INFO | faiss.loader | Successfully loaded faiss.
+2026-08-27 12:37:14,687 | INFO | hr_assistant.vector_store | FAISS index built in memory
+2026-08-27 12:37:14,698 | INFO | hr_assistant.vector_store | Saved FAISS index to 'data\faiss_index'
+2026-08-27 12:37:14,700 | INFO | hr_assistant.vector_store | Creating retriever with top_k=3
+2026-08-27 12:37:14,709 | INFO | hr_assistant.llm | Initializing LLM 'openai/gpt-oss-120b'
+2026-08-27 12:37:15,862 | INFO | hr_assistant.agent | Creating HR agent with 1 tool(s)
+2026-08-27 12:37:15,881 | INFO | hr_assistant.agent | HR agent ready
+2026-08-27 12:37:15,882 | INFO | hr_assistant.pipeline | HR assistant is ready to take questions
+2026-08-27 12:37:48,156 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:37:48,161 | INFO | hr_assistant.pipeline | User question: Hello! Which company do you represent?
+2026-08-27 12:37:49,288 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:37:50,906 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:37:50,915 | INFO | hr_assistant.tools | search_hr_policy called with query: company name
+2026-08-27 12:37:56,242 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:37:57,501 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:37:57,505 | INFO | hr_assistant.pipeline | Final answer: We’re the HR team for **Acme Corp**. If you have any questions about our policies or procedures, just let me know!
+2026-08-27 12:37:58,798 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:14,933 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:39:14,938 | INFO | hr_assistant.pipeline | User question: What you can do ?
+2026-08-27 12:39:16,010 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:17,444 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:17,447 | INFO | hr_assistant.pipeline | Final answer: I’m not sure—I don’t have that information.
+2026-08-27 12:39:17,824 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:25,111 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:39:25,114 | INFO | hr_assistant.pipeline | User question: How many days of paid sick leave do I get per year, and do i need a doctor's note?
+2026-08-27 12:39:25,741 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:26,763 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:26,768 | INFO | hr_assistant.tools | search_hr_policy called with query: paid sick leave days per year and doctor's note requirement
+2026-08-27 12:39:31,679 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:39:32,600 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:32,604 | INFO | hr_assistant.pipeline | Final answer: According to the company’s leave policy:
+
+- **Paid sick leave:** You are entitled to **10 paid sick days per calendar year**.  
+- **Doctor’s note:** A medical certificate (doctor’s note) is required **only when the sick leave exceeds 2 consecutive days**. For a single day or two consecutive days, no note is needed.
+2026-08-27 12:39:33,418 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:57,353 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:39:57,358 | INFO | hr_assistant.pipeline | User question: How do i enroll in or change my health insurance plan?
+2026-08-27 12:39:57,997 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:59,020 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:39:59,027 | INFO | hr_assistant.tools | search_hr_policy called with query: health insurance enrollment change process
+2026-08-27 12:40:01,889 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:40:02,399 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:40:02,402 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but I don’t have information on the health‑insurance enrollment or change process in the HR policy documents. If you need details on that, you may want to contact your HR representative directly.
+2026-08-27 12:40:02,809 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:40:40,456 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:40:40,461 | INFO | hr_assistant.pipeline | User question: can you share me company internal details?
+2026-08-27 12:40:43,669 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:40:43,671 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: can you share me company internal details? | reason: The user is asking for company internal details, which is not a question about HR policy and is not covered by the allowed categories. Therefore it is treated as a violation of the assistant’s input policy.
+2026-08-27 12:41:11,469 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:41:11,474 | INFO | hr_assistant.pipeline | User question: Can you share me exact "Exit Process" policy details
+2026-08-27 12:41:12,136 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:41:13,262 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:41:13,268 | INFO | hr_assistant.tools | search_hr_policy called with query: Exit Process policy details
+2026-08-27 12:41:17,769 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:41:18,800 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:41:18,803 | INFO | hr_assistant.pipeline | Final answer: Here are the exact “Exit Process” policy details from the company handbook:
+
+**8. EXIT POLICY**  
+- Upon resignation or termination, employees must complete a clearance process involving the **IT, Finance, and HR departments** before their last working day.  
+- **Full and final settlement**, including any pending reimbursements and leave encashment, is processed **within 45 days of the last working day**.
+
+**4. NOTICE PERIOD** (relevant to the exit process)  
+- Employees who wish to resign must serve a **notice period of 30 days**.  
+- During the probation period, the notice period is reduced to **15 days**.  
+- The company may waive the notice period at its discretion, with the full and final settlement still processed **within 45 days of the last working day**.
+2026-08-27 12:41:19,816 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:42:44,270 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:42:44,274 | INFO | hr_assistant.pipeline | User question: what is the salary of CEO?
+2026-08-27 12:42:45,118 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:42:45,120 | WARNING | hr_assistant.guardrails | Input guard BLOCKED question: what is the salary of CEO? | reason: The user is requesting salary information for a specific employee (the CEO), which is a protected personal data request under the HR policy.
+2026-08-27 12:43:49,104 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:43:49,110 | INFO | hr_assistant.pipeline | User question: what are the important information from the hr policy i need to know?
+2026-08-27 12:43:49,939 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:43:51,476 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:43:51,483 | INFO | hr_assistant.tools | search_hr_policy called with query: What are the key sections of the HR policy?
+2026-08-27 12:43:56,085 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:43:57,005 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:43:57,013 | INFO | hr_assistant.tools | search_hr_policy called with query: What does the HR policy say about work from home?
+2026-08-27 12:43:57,724 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:43:58,645 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:43:58,650 | INFO | hr_assistant.tools | search_hr_policy called with query: What does the HR policy say about probation period?
+2026-08-27 12:43:59,261 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:44:01,101 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:44:01,106 | INFO | hr_assistant.tools | search_hr_policy called with query: What does the HR policy say about code of conduct?
+2026-08-27 12:44:01,819 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:44:04,073 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:44:04,078 | INFO | hr_assistant.pipeline | Final answer: Here are the most important points from the Acme Corp HR policy that every employee should know:
+
+| Topic | Key Details |
+|-------|--------------|
+| **Leave Policy** | • 20 days paid annual leave per calendar year (full‑time).<br>• Requests must be entered in the HR portal ≥ 5 working days before the start date.<br>• Up to 5 unused days can be carried forward to the next year.<br>• 10 paid sick days per year; a medical certificate is required for sick leave > 2 consecutive days. |
+| **Work‑From‑Home (WFH)** | • Up to **2 days per week** are allowed with manager approval.<br>• Fully remote arrangements need written approval from the department head.<br>• Employees must be reachable during core hours **10 AM – 4 PM**. |
+| **Probation Period** | • New hires have a **3‑month probation** from the date of joining.<br>• No paid leave is accrued during probation (unpaid leave possible with manager approval for emergencies).<br>• Performance is reviewed at the end of the period to confirm permanent employment. |
+| **Notice Period** | • Standard resignation notice: **30 days**.<br>• During probation the notice period is reduced to **15 days**.<br>• The company may waive notice; final settlement is processed within **45 days** of the last working day. |
+| **Holidays** | • The company observes **12 public holidays** each year (published in the annual holiday calendar).<br>• If you work on a public holiday you are eligible for compensatory leave. |
+| **Code of Conduct** | • Maintain professionalism and respect at all times.<br>• Harassment, discrimination, or any misconduct are prohibited and may lead to disciplinary action, up to termination.<br>• Annual Code of Conduct training is mandatory for all employees. |
+| **Exit Process** | • Upon resignation or termination, complete the clearance process with **IT, Finance, and HR** before the last working day.<br>• Full and final settlement (including any pending reimbursements and leave encashment) is processed within **45 days** of the last working day. |
+| **Reimbursement** | *(The policy excerpt you provided does not contain specific reimbursement details. If you need that information, please let me know and I can check further.)* |
+
+These sections cover the core areas most employees interact with on a regular basis—time off, remote work, onboarding, leaving the company, and expected behavior. If you need more detail on any specific point, just ask!
+2026-08-27 12:44:04,893 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:08,203 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:45:08,207 | INFO | hr_assistant.pipeline | User question: Please give me work from home policy summary
+2026-08-27 12:45:08,996 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:09,927 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:09,932 | INFO | hr_assistant.tools | search_hr_policy called with query: work from home policy
+2026-08-27 12:45:13,871 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:45:15,242 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:15,246 | INFO | hr_assistant.pipeline | Final answer: **Work‑From‑Home (WFH) Policy – Quick Summary**
+
+| Aspect | What You Need to Know |
+|--------|-----------------------|
+| **Maximum days** | Up to **2 days per week** working from home (unless you have a special arrangement). |
+| **Approval** | • **Manager’s approval** is required for the regular 2‑day‑a‑week option.<br>• **Fully remote** (more than 2 days) needs **written approval from the department head**. |
+| **Core‑hours availability** | You must be reachable **between 10 AM – 4 PM** on any day you’re working from home. |
+| **How to request** | Submit a WFH request through the usual HR/manager channel (e.g., HR portal or email) and wait for approval before the day you plan to work remotely. |
+| **Other notes** | • The policy applies to all employees unless otherwise specified in your contract.<br>• The same expectations for performance, confidentiality, and security apply as when you’re in the office. |
+
+**Bottom line:** You can work from home up to two days a week with your manager’s OK, stay reachable during core hours, and get written sign‑off from the department head if you need a fully remote arrangement. If you have any specific questions or need help submitting a request, just let me know!
+2026-08-27 12:45:16,080 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:48,622 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:45:48,629 | INFO | hr_assistant.pipeline | User question: Give me Work from home policy summary in just 5 lines
+2026-08-27 12:45:49,343 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:50,162 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:50,169 | INFO | hr_assistant.tools | search_hr_policy called with query: What is the work from home policy?
+2026-08-27 12:45:50,781 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:45:52,005 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:45:52,008 | INFO | hr_assistant.pipeline | Final answer: **Work‑From‑Home Policy (5‑line summary)**  
+
+1. Employees may work from home up to **2 days per week** with prior **manager approval**.  
+2. **Fully remote** arrangements are allowed only with **written approval** from the department head.  
+3. When working remotely, staff must be **reachable during core hours (10 AM – 4 PM)**.  
+4. All remote‑work requests must be submitted through the company’s standard approval workflow.  
+5. The policy applies to all full‑time employees and is reviewed annually by HR.
+2026-08-27 12:45:52,619 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:46:33,352 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:46:33,356 | INFO | hr_assistant.pipeline | User question: who should i contact for more information?
+2026-08-27 12:46:34,298 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:46:35,489 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:46:35,496 | INFO | hr_assistant.tools | search_hr_policy called with query: contact person for more information HR policy
+2026-08-27 12:46:36,141 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:46:36,857 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:46:36,865 | INFO | hr_assistant.tools | search_hr_policy called with query: contact person for more information
+2026-08-27 12:46:43,311 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:46:44,742 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:46:44,745 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but I don’t have that information.
+2026-08-27 12:46:45,458 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:47:25,159 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:47:25,163 | INFO | hr_assistant.pipeline | User question: what is your salary?
+2026-08-27 12:47:28,366 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:47:29,726 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:47:29,732 | INFO | hr_assistant.tools | search_hr_policy called with query: assistant salary
+2026-08-27 12:47:34,207 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:47:35,124 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:47:35,128 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but I don’t have that information.
+2026-08-27 12:47:35,739 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:12,622 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:48:12,626 | INFO | hr_assistant.pipeline | User question: Give me Work from home policy summary in just 5 lines
+2026-08-27 12:48:13,218 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:14,140 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:14,147 | INFO | hr_assistant.tools | search_hr_policy called with query: work from home policy
+2026-08-27 12:48:14,733 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:48:15,472 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:15,475 | INFO | hr_assistant.pipeline | Final answer: **Work‑From‑Home (WFH) Policy – 5‑Line Summary**
+
+1. Employees may work from home up to **2 days per week** with prior manager approval.  
+2. Fully remote arrangements require **written approval from the department head**.  
+3. Remote staff must be **reachable during core hours (10 AM – 4 PM)**.  
+4. All WFH requests are submitted through the HR portal and are subject to operational needs.  
+5. The policy applies to all full‑time employees; part‑time or contract staff follow the same approval process.
+2026-08-27 12:48:16,187 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:39,605 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:48:39,609 | INFO | hr_assistant.pipeline | User question: Do you have insurance policy?
+2026-08-27 12:48:40,565 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:41,483 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:41,488 | INFO | hr_assistant.tools | search_hr_policy called with query: insurance policy
+2026-08-27 12:48:42,202 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-08-27 12:48:42,916 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:48:42,920 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but I don’t have information about an insurance policy in the HR handbook.
+2026-08-27 12:48:43,325 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:49:00,151 | INFO | __main__ | === Streamlit run: new question received ===
+2026-08-27 12:49:00,155 | INFO | hr_assistant.pipeline | User question: Thanks
+2026-08-27 12:49:00,836 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:49:02,270 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-27 12:49:02,273 | INFO | hr_assistant.pipeline | Final answer: You’re welcome! If you have any other HR‑related questions, just let me know.
+2026-08-27 12:49:02,681 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
